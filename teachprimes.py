@@ -79,12 +79,12 @@ def spiral():
     jmax = 101
     
     afun = lambda jj: numpy.sqrt(((jmax+1-jj)/jmax)) #angle
-    rfun = lambda jj: afun(jj)*14.0 #radius
+    rfun = lambda jj: afun(jj)*15.0 #radius
     xfun = lambda jj: numpy.multiply(rfun(jj), numpy.cos(afun(jj)*11.0*numpy.pi))
     yfun = lambda jj: numpy.multiply(rfun(jj), numpy.sin(afun(jj)*11.0*numpy.pi))
     
-#    jj = numpy.linspace(1,jmax,2000)
-#    plt.plot(xfun(jj),yfun(jj), 'w')
+    jj = numpy.linspace(1,jmax,2000)
+    plt.plot(xfun(jj),yfun(jj), color="xkcd:dark grey",zorder=-10, linewidth=2)
     for jj in numpy.arange(1,jmax+1):
         drawnumber(xfun(jj),yfun(jj),jj)
     
@@ -105,7 +105,7 @@ ax1.set_axis_off()
 fig.add_axes(ax1)
 ax1.axis('off')
 
-square(10)
+spiral()
 
 
 ax1.get_xaxis().set_visible(False)
