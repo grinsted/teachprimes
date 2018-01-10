@@ -20,20 +20,37 @@ import sympy
 
 primecolors={
  2: 'xkcd:red',
- 3: 'xkcd:blue',
- 5: 'xkcd:green',
- 7: 'xkcd:pink',
- 11: 'xkcd:brown',
- 13: 'xkcd:purple',
- 17: 'xkcd:light blue',
+ 3: 'xkcd:green',
+ 5: 'xkcd:yellow',
+ 7: 'xkcd:blue',
+ 11: 'xkcd:lime green',
+ 13: 'xkcd:brown',
+ 17: 'xkcd:purple',
  19: 'xkcd:teal',
- 23: 'xkcd:orange',
+ 23: 'xkcd:cyan',
  29: 'xkcd:magenta',
- 31: 'xkcd:yellow',
- 37: 'xkcd:lime green',
+ 31: 'xkcd:orange',
+ 37: 'xkcd:olive',
  41: 'xkcd:violet',
  43: 'xkcd:dark green',
- 47: 'xkcd:cyan'}
+ 47: 'xkcd:pink'}
+
+primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
+2: '#E6194B',
+3: '#3CB44B',
+5: '#FFE119',
+7: '#0082C8',
+11: '#F58230',
+13: '#911EB4',
+17: '#46F0F0',
+19: '#F032E6',
+23: 'xkcd:lime green',
+29: '#FABEBE',
+31: '#008080',
+37: '#AA6E28',
+41: '#FFFAC8',
+43: '#AAFFC3',
+47: '#808000'}
 
 def drawnumber(xo,yo,num):
     if num == 1:
@@ -47,12 +64,12 @@ def drawnumber(xo,yo,num):
         theta2 = 360*(ix+1)/len(factors)
         color = primecolors.get(f)
         if not color: 
-            color = 'xkcd:grey'
+            color = '#808080'
         p = patches.Wedge(center=(xo,yo), r=0.5, theta1=0, theta2=360, 
                           edgecolor="none", facecolor="#000000", linewidth=0);
         plt.gca().add_patch(p)
         p = patches.Wedge(center=(xo,yo), r=1.0, theta1=theta1, theta2=theta2, width=0.5, 
-                          edgecolor="#000000", facecolor=color, linewidth=2)
+                          edgecolor="#000000", facecolor=color, linewidth=1)
         plt.gca().add_patch(p)
         
         plt.text(xo,yo, "{}".format(num),horizontalalignment='center',verticalalignment='center',color="#FFFFFF")          
@@ -66,13 +83,13 @@ def spiral():
     xfun = lambda jj: numpy.multiply(rfun(jj), numpy.cos(afun(jj)*11.0*numpy.pi))
     yfun = lambda jj: numpy.multiply(rfun(jj), numpy.sin(afun(jj)*11.0*numpy.pi))
     
-    jj = numpy.linspace(1,jmax,2000)
-    plt.plot(xfun(jj),yfun(jj), 'k')
+#    jj = numpy.linspace(1,jmax,2000)
+#    plt.plot(xfun(jj),yfun(jj), 'w')
     for jj in numpy.arange(1,jmax+1):
         drawnumber(xfun(jj),yfun(jj),jj)
     
 
-def square(n):
+def square(n=10):
     jmax = n*n
     
     xfun = lambda jj: ((jj-1) % 10)*2.2
