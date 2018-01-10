@@ -40,21 +40,9 @@ primecolors={
 'spiral': '#808080'}
 
 primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
-2: '#E6194B',
-3: '#3CB44B',
-5: '#FFE119',
-7: '#0082C8',
-11: '#F58230',
-13: '#911EB4',
-17: '#46F0F0',
-19: '#F032E6',
-23: 'xkcd:lime green',
-29: '#FABEBE',
-31: '#008080',
-37: '#AA6E28',
-41: '#FFFAC8',
-43: '#AAFFC3',
-47: '#808000',
+              # and optimized using http://vrl.cs.brown.edu/color
+2: "#e71d4c", 3: "#3ab44b", 5: "#fde019", 7: "#0482c7", 11: "#f5812f", 13: "#901eb3", 17: "#46f0ef", 19:"#f134e8", 
+23: "#2524f9", 29: "#007f7f", 31: "#ab6f28", 37: "#a8fec1", 41: "#37216c", 43: "#aef815", 47: "#fabdbe",
 'fallback': '#808080',
 'background': '#000000',
 'text': '#FFFFFF',
@@ -85,7 +73,13 @@ def drawnumber(xo,yo,num):
         plt.gca().add_patch(p)
         
         plt.text(xo,yo, "{}".format(num),horizontalalignment='center',verticalalignment='center', 
-                 color=primecolors.get('text'))          
+                 color=primecolors.get('text'))
+#        if f>11:
+#            theta = (theta1+theta2)*.5
+#            plt.text(xo+numpy.cos(theta*numpy.pi/180)*.75,yo+numpy.sin(theta*numpy.pi/180)*.75, 
+#                     f, horizontalalignment='center',verticalalignment='center', fontsize='x-small',
+#                     color=primecolors.get('text'))
+            
 
 
 def spiral():
