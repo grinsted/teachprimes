@@ -33,7 +33,11 @@ primecolors={
  37: 'xkcd:olive',
  41: 'xkcd:violet',
  43: 'xkcd:dark green',
- 47: 'xkcd:pink'}
+ 47: 'xkcd:pink',
+'fallback': '#808080',
+'background': '#000000',
+'text': '#FFFFFF',
+'spiral': '#808080'}
 
 primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
 2: '#E6194B',
@@ -50,7 +54,15 @@ primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-
 37: '#AA6E28',
 41: '#FFFAC8',
 43: '#AAFFC3',
-47: '#808000'}
+47: '#808000',
+'fallback': '#808080',
+'background': '#000000',
+'text': '#FFFFFF',
+'spiral': '#808080'}
+
+#primecolors={ #based on the board game
+#1: '#D1D3D4', 2: '#F2A243', 3: '#87C65F', 5: '#5DCBF0', 7: '#8E7DBA',
+#'fallback': '#EB5F4C', 'background': '#FFFFFF', 'text': '#424243', 'spiral': '#FFFFFF'}
 
 def drawnumber(xo,yo,num):
     if num == 1:
@@ -64,15 +76,16 @@ def drawnumber(xo,yo,num):
         theta2 = 360*(ix+1)/len(factors)
         color = primecolors.get(f)
         if not color: 
-            color = '#808080'
+            color = primecolors.get("fallback")
         p = patches.Wedge(center=(xo,yo), r=0.5, theta1=0, theta2=360, 
-                          edgecolor="none", facecolor="#000000", linewidth=0);
+                          edgecolor="none", facecolor=primecolors.get('background'), linewidth=0);
         plt.gca().add_patch(p)
         p = patches.Wedge(center=(xo,yo), r=1.0, theta1=theta1, theta2=theta2, width=0.5, 
-                          edgecolor="#000000", facecolor=color, linewidth=1)
+                          edgecolor=primecolors.get('background'), facecolor=color, linewidth=1)
         plt.gca().add_patch(p)
         
-        plt.text(xo,yo, "{}".format(num),horizontalalignment='center',verticalalignment='center',color="#FFFFFF")          
+        plt.text(xo,yo, "{}".format(num),horizontalalignment='center',verticalalignment='center', 
+                 color=primecolors.get('text'))          
 
 
 def spiral():
@@ -84,7 +97,7 @@ def spiral():
     yfun = lambda jj: numpy.multiply(rfun(jj), numpy.sin(afun(jj)*11.0*numpy.pi))
     
     jj = numpy.linspace(1,jmax,2000)
-    plt.plot(xfun(jj),yfun(jj), color="xkcd:dark grey",zorder=-10, linewidth=2)
+    plt.plot(xfun(jj),yfun(jj), color=primecolors['spiral'],zorder=-10, linewidth=2)
     for jj in numpy.arange(1,jmax+1):
         drawnumber(xfun(jj),yfun(jj),jj)
     
