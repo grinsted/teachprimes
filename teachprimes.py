@@ -111,6 +111,21 @@ def square(n=10):
         drawnumber(xfun(jj),yfun(jj),jj)
 
 
+def ulam(jmax): #https://www.youtube.com/watch?time_continue=1&v=iFuR97YcSLM
+    taken = numpy.zeros((30,30))
+    p = (15,15)
+    v = (1,0)
+    for jj in numpy.arange(1,jmax+1):
+        drawnumber(p[0]*2.2,p[1]*2.2,jj)
+        taken[p[0],p[1]] = 1
+        vleft=(v[1],-v[0])
+        if taken[p[0]+vleft[0],p[1]+vleft[1]]==0:
+            v=vleft
+        p = (p[0]+v[0],p[1]+v[1]) 
+
+
+
+
 fig = plt.figure(facecolor=primecolors['board'],figsize=(8, 8), dpi=80)
 ax1 = plt.Axes(fig, [0., 0., 1., 1.])
 ax1.set_axis_off()
@@ -118,8 +133,8 @@ fig.add_axes(ax1)
 ax1.axis('off')
 
 #spiral()
-square(10)
-
+#square(10)
+ulam(100)
 
 ax1.get_xaxis().set_visible(False)
 ax1.get_yaxis().set_visible(False)
