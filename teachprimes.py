@@ -133,8 +133,8 @@ fig.add_axes(ax1)
 ax1.axis('off')
 
 #spiral()
-#square(10)
-ulam(100)
+square(10)
+#ulam(100)
 
 ax1.get_xaxis().set_visible(False)
 ax1.get_yaxis().set_visible(False)
