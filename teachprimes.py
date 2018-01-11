@@ -5,7 +5,7 @@ Created on Wed Jan 10 11:06:33 2018
 
 Code for making figures similar to those used in the board game "Prime Climb". 
 
-
+I recommed the game too. I bought a copy.
 
 
 @author: aslak
@@ -42,8 +42,8 @@ primecolors={
 
 primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
               # and optimized using http://vrl.cs.brown.edu/color
-2: "#e71d4c", 3: "#3ab44b", 5: "#fde019", 7: "#0482c7", 11: "#f5812f", 13: "#901eb3", 17: "#46f0ef", 19:"#f134e8", 
-23: "#2524f9", 29: "#007f7f", 31: "#ab6f28", 37: "#a8fec1", 41: "#37216c", 43: "#aef815", 47: "#fabdbe",
+2: "#e71d4c", 3: "#3ab44b", 5: "#fde019", 7: "#0482c7", 11: "#f58231", 13: "#901eb3", 17: "#46f0ef", 19:"#f134e8", 
+23: "#2524f9", 29: "#007f7f", 31: "#964826", 37: "#a8fec1", 41: "#37216c", 43: "#aef815", 47: "#fabdbe",
 'fallback': '#808080',
 'background': '#000000',
 'text': '#FFFFFF',
