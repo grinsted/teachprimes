@@ -62,9 +62,11 @@ def drawnumber(xo,yo,num):
         factors = sympy.factorint(num)
         factors = list(sympy.utilities.iterables.multiset_combinations(factors, sum(factors.values())))[0]
 
+    factors=factors[0::2] + factors[1::2]
+
     for ix,f in enumerate(factors):
-        theta1 = 360*ix/len(factors)
-        theta2 = 360*(ix+1)/len(factors)
+        theta1 = 90+360*(ix-.5)/len(factors)
+        theta2 = 90+360*(ix+.5)/len(factors)
         color = primecolors.get(f)
         if not color: 
             color = primecolors.get("fallback")
@@ -76,12 +78,12 @@ def drawnumber(xo,yo,num):
         plt.gca().add_patch(p)
         
         plt.text(xo,yo, "{}".format(num),horizontalalignment='center',verticalalignment='center', 
-                 color=primecolors.get('text'))
-#        if f>11:
-#            theta = (theta1+theta2)*.5
-#            plt.text(xo+numpy.cos(theta*numpy.pi/180)*.75,yo+numpy.sin(theta*numpy.pi/180)*.75, 
-#                     f, horizontalalignment='center',verticalalignment='center', fontsize='x-small',
-#                     color=primecolors.get('text'))
+                 color=primecolors.get('text'), weight='bold', size=12.0)
+        if (f>110) & (len(factors)>1):
+            theta = (theta1+theta2)*.5
+            plt.text(xo+numpy.cos(theta*numpy.pi/180)*.75,yo+numpy.sin(theta*numpy.pi/180)*.75, 
+                     f, horizontalalignment='center',verticalalignment='center', fontsize=5,
+                     color=primecolors.get('text'))
             
 
 
@@ -124,7 +126,7 @@ ax1.get_yaxis().set_visible(False)
 ax1.axis('tight')
 ax1.axis('equal')
 
-if False:
+if True:
     plt.show()
 else:
     fig.savefig('teachprime.pdf', facecolor=primecolors['board'], edgecolor=primecolors['board'],
