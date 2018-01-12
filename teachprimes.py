@@ -23,6 +23,7 @@ import sympy
 # 11: 'xkcd:lime green', 13: 'xkcd:brown', 17: 'xkcd:purple', 19: 'xkcd:teal',
 # 23: 'xkcd:cyan', 29: 'xkcd:magenta', 31: 'xkcd:orange', 37: 'xkcd:olive',
 # 41: 'xkcd:violet', 43: 'xkcd:dark green', 47: 'xkcd:pink', 
+#'maxprimecolor': 47,
 # 'fallback': '#808080',
 #'background': '#000000',
 #'text': '#FFFFFF',
@@ -33,14 +34,16 @@ primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-
               # and optimized using http://vrl.cs.brown.edu/color
 2: "#e71d4c", 3: "#3ab44b", 5: "#fde019", 7: "#0482c7", 11: "#f58231", 13: "#901eb3", 17: "#46f0ef", 19:"#f134e8", 
 23: "#3524f9", 29: "#007f7f", 31: "#964826", 37: "#adc16d", 41: "#fabdbe", 43: "#aef815", 47: "#442767",
+'maxprimecolor': 47,
 'fallback': '#808080',
 'background': '#000000',
-'text': '#EEEEEE',
+'text': '#FFFFFF',
 'spiral': '#808080',
-'board': '#000000'}
+'board': '#222222'}
 
 #primecolors={ #based on the board game
 #1: '#D1D3D4', 2: '#F2A243', 3: '#87C65F', 5: '#5DCBF0', 7: '#8E7DBA',
+#'maxprimecolor': 7,
 #'fallback': '#EB5F4C', 'background': '#FFFFFF', 'text': '#424243', 'spiral': '#FFFFFF',
 #'board': '#424243'}
 
@@ -68,10 +71,10 @@ def drawnumber(xo,yo,num):
         
         plt.text(xo-0.01,yo-0.03, "{}".format(num),horizontalalignment='center',verticalalignment='center', 
                  color=primecolors.get('text'), weight='bold', size=12.0)
-        if (f>110) & (len(factors)>1):
+        if (f>primecolors['maxprimecolor']) & (len(factors)>1):
             theta = (theta1+theta2)*.5
             plt.text(xo+numpy.cos(theta*numpy.pi/180)*.75,yo+numpy.sin(theta*numpy.pi/180)*.75, 
-                     f, horizontalalignment='center',verticalalignment='center', fontsize=5,
+                     f, horizontalalignment='center',verticalalignment='center', fontsize=6, weight='bold',
                      color=primecolors.get('text'))
             
 
