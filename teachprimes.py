@@ -18,35 +18,24 @@ import matplotlib.patches as patches
 import numpy
 import sympy
 
-primecolors={
- 2: 'xkcd:red',
- 3: 'xkcd:green',
- 5: 'xkcd:yellow',
- 7: 'xkcd:blue',
- 11: 'xkcd:lime green',
- 13: 'xkcd:brown',
- 17: 'xkcd:purple',
- 19: 'xkcd:teal',
- 23: 'xkcd:cyan',
- 29: 'xkcd:magenta',
- 31: 'xkcd:orange',
- 37: 'xkcd:olive',
- 41: 'xkcd:violet',
- 43: 'xkcd:dark green',
- 47: 'xkcd:pink',
-'fallback': '#808080',
-'background': '#000000',
-'text': '#FFFFFF',
-'spiral': '#808080',
-'board': '#000000'}
+#primecolors={
+# 2: 'xkcd:red', 3: 'xkcd:green', 5: 'xkcd:yellow', 7: 'xkcd:blue',
+# 11: 'xkcd:lime green', 13: 'xkcd:brown', 17: 'xkcd:purple', 19: 'xkcd:teal',
+# 23: 'xkcd:cyan', 29: 'xkcd:magenta', 31: 'xkcd:orange', 37: 'xkcd:olive',
+# 41: 'xkcd:violet', 43: 'xkcd:dark green', 47: 'xkcd:pink', 
+# 'fallback': '#808080',
+#'background': '#000000',
+#'text': '#FFFFFF',
+#'spiral': '#808080',
+#'board': '#000000'}
 
 primecolors={ #based on https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
               # and optimized using http://vrl.cs.brown.edu/color
 2: "#e71d4c", 3: "#3ab44b", 5: "#fde019", 7: "#0482c7", 11: "#f58231", 13: "#901eb3", 17: "#46f0ef", 19:"#f134e8", 
-23: "#2524f9", 29: "#007f7f", 31: "#964826", 37: "#a8fec1", 41: "#37216c", 43: "#aef815", 47: "#fabdbe",
+23: "#3524f9", 29: "#007f7f", 31: "#964826", 37: "#adc16d", 41: "#fabdbe", 43: "#aef815", 47: "#442767",
 'fallback': '#808080',
 'background': '#000000',
-'text': '#FFFFFF',
+'text': '#EEEEEE',
 'spiral': '#808080',
 'board': '#000000'}
 
@@ -77,7 +66,7 @@ def drawnumber(xo,yo,num):
                           edgecolor=primecolors.get('background'), facecolor=color, linewidth=1)
         plt.gca().add_patch(p)
         
-        plt.text(xo,yo, "{}".format(num),horizontalalignment='center',verticalalignment='center', 
+        plt.text(xo-0.01,yo-0.03, "{}".format(num),horizontalalignment='center',verticalalignment='center', 
                  color=primecolors.get('text'), weight='bold', size=12.0)
         if (f>110) & (len(factors)>1):
             theta = (theta1+theta2)*.5
@@ -123,7 +112,12 @@ def ulam(jmax): #https://www.youtube.com/watch?time_continue=1&v=iFuR97YcSLM
             v=vleft
         p = (p[0]+v[0],p[1]+v[1]) 
 
-
+def justprimes():
+    p=[1,2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
+    for ix,jj in enumerate(p):
+        xo = (ix%4)*2
+        yo = (ix/4)*2
+        drawnumber(xo,yo,jj)
 
 
 fig = plt.figure(facecolor=primecolors['board'],figsize=(8, 8), dpi=80)
@@ -135,15 +129,16 @@ ax1.axis('off')
 #spiral()
 square(10)
 #ulam(100)
+#justprimes()
 
 ax1.get_xaxis().set_visible(False)
 ax1.get_yaxis().set_visible(False)
 ax1.axis('tight')
 ax1.axis('equal')
 
-if True:
+if False:
     plt.show()
 else:
-    fig.savefig('teachprime.pdf', facecolor=primecolors['board'], edgecolor=primecolors['board'],
+    fig.savefig('square.pdf', facecolor=primecolors['board'], edgecolor=primecolors['board'],
         orientation='portrait', pad_inches=0,
         frameon=None)
